@@ -10,12 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS خاص بصفحة النتائج */
+        /* CSS العام لصفحة النتائج */
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f4f7f6;
             margin: 0;
-            padding: 20px;
+            padding: 15px; /* نقصنا شوية من البادينغ على الأطراف */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,12 +24,13 @@
         }
         .container {
             background-color: #ffffff;
-            padding: 30px 40px;
+            padding: 25px 20px; /* نقصنا البادينغ على الأطراف للهواتف */
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 700px;
+            width: 100%; /* العرض 100% باش يملا الشاشة */
+            max-width: 700px; /* يبقى الحد الأقصى للأجهزة الكبيرة */
             text-align: right; /* لجعل النص يبدأ من اليمين */
+            box-sizing: border-box; /* **مهم جداً** باش البادينغ ما يزيدش في العرض الكلي */
         }
         h1 {
             color: #2c3e50;
@@ -38,12 +39,12 @@
             text-align: center; /* العنوان في الوسط */
         }
         .result-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #eee; /* خط متقطع بين الأقسام */
+            margin-bottom: 20px; /* نقصنا المسافة بين العناصر */
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
         }
         .result-item:last-child {
-            border-bottom: none; /* ما نديروش خط في الأخير */
+            border-bottom: none;
         }
         .result-item h3 {
             color: #3498db;
@@ -53,14 +54,14 @@
         }
         .result-item h4 {
             color: #2c3e50;
-            margin-top: 20px;
+            margin-top: 15px; /* نقصنا المسافة الفوقانية */
             margin-bottom: 8px;
             font-size: 1.3em;
-            border-right: 4px solid #3498db; /* خط على اليمين للعنوان الفرعي */
+            border-right: 4px solid #3498db;
             padding-right: 10px;
         }
         .result-item p {
-            font-size: 1.1em;
+            font-size: 1.05em; /* عدلنا حجم الخط */
             line-height: 1.7;
             text-align: justify;
             margin-bottom: 0;
@@ -75,14 +76,17 @@
             font-size: 1em;
             margin-top: 20px;
             transition: background-color 0.3s ease;
+            width: auto; /* باش ما ياخذش عرض كامل */
+            display: inline-block; /* يخلي الزر ياخذ حجم المحتوى تاعو */
         }
         .back-button:hover {
             background-color: #5a6268;
         }
         footer {
-            margin-top: 40px;
-            font-size: 0.9em;
+            margin-top: 30px; /* نقصنا المسافة */
+            font-size: 0.8em; /* صغرنا حجم الخط */
             color: #777;
+            text-align: center;
         }
         /* تصميم خاص إذا لم يتم العثور على بيانات */
         #noDataMessage {
@@ -90,6 +94,55 @@
             font-weight: bold;
             text-align: center;
             margin-top: 30px;
+            font-size: 1.1em; /* عدلنا حجم الخط */
+        }
+
+        /* --- استعلامات الوسائط (Media Queries) لـ result.html --- */
+        /* هذه القواعد تطبق فقط عندما يكون عرض الشاشة 600px أو أقل */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em; /* نصغرو الخط أكثر */
+            }
+            .container {
+                padding: 20px 15px; /* بادينغ أقل */
+            }
+            .result-item h3 {
+                font-size: 1.5em; /* حجم خط العنوان الفرعي للكود */
+            }
+            .result-item h4 {
+                font-size: 1.1em; /* حجم خط العناوين الفرعية */
+                border-right: 3px solid #3498db; /* سمك الخط الجانبي */
+                padding-right: 8px;
+            }
+            .result-item p {
+                font-size: 0.95em; /* حجم خط الفقرات */
+            }
+            .back-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            footer {
+                font-size: 0.75em;
+            }
+            #noDataMessage {
+                font-size: 1em;
+            }
+        }
+
+        /* استعلام وسائط إضافي للأجهزة الأصغر (مثلاً أقل من 400 بكسل) */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.6em;
+            }
+            .result-item h3 {
+                font-size: 1.3em;
+            }
+            .result-item h4 {
+                font-size: 1em;
+            }
+            .result-item p {
+                font-size: 0.85em;
+            }
         }
     </style>
 </head>
@@ -101,11 +154,11 @@
                 سمحلي خويا، ماكانش معلومات على الكود هذا. ارجع لصفحة البحث من فضلك.
             </p>
         </div>
-        <button class="back-button" onclick="window.location.href='index_dz.html'">الرجوع لصفحة البحث</button>
+        <button class="back-button" onclick="window.history.back()">الرجوع لصفحة البحث</button>
     </div>
 
     <footer>
-        &copy; 2025 من برمجة كريس محمد
+        &copy; 2025 من برمجة كريس محمد.
     </footer>
 
     <script>
