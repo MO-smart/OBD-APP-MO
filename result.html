@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج البحث عن الكود - شرح أعطال الطونوبيل</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS خاص بصفحة النتائج */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            text-align: right; /* لجعل النص يبدأ من اليمين */
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            text-align: center; /* العنوان في الوسط */
+        }
+        .result-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee; /* خط متقطع بين الأقسام */
+        }
+        .result-item:last-child {
+            border-bottom: none; /* ما نديروش خط في الأخير */
+        }
+        .result-item h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        .result-item h4 {
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+            border-right: 4px solid #3498db; /* خط على اليمين للعنوان الفرعي */
+            padding-right: 10px;
+        }
+        .result-item p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            text-align: justify;
+            margin-bottom: 0;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        /* تصميم خاص إذا لم يتم العثور على بيانات */
+        #noDataMessage {
+            color: #e74c3c;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تفاصيل الكود</h1>
+        <div id="codeDetails">
+            <p id="noDataMessage" style="display: none;">
+                سمحلي خويا، ماكانش معلومات على الكود هذا. ارجع لصفحة البحث من فضلك.
+            </p>
+        </div>
+        <button class="back-button" onclick="window.location.href='index_dz.html'">الرجوع لصفحة البحث</button>
+    </div>
+
+    <footer>
+        &copy; 2025 من برمجة كريس محمد
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeDetailsDiv = document.getElementById('codeDetails');
+            const noDataMessage = document.getElementById('noDataMessage');
+            
+            // نجيبو البيانات من localStorage
+            const codeInfo = JSON.parse(localStorage.getItem('currentErrorCode'));
+
+            if (codeInfo) {
+                // إذا صبنا البيانات، نعرضوها
+                codeDetailsDiv.innerHTML = `
+                    <div class="result-item">
+                        <h3>${codeInfo.code}: ${codeInfo.name_dz}</h3>
+                    </div>
+                    <div class="result-item">
+                        <h4>الوصـف:</h4>
+                        <p>${codeInfo.description_dz}</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>لي سيمبتوم (الأعراض):</h4>
+                        <p>${codeInfo.symptoms_dz}</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>لي كوز (الأسباب):</h4>
+                        <p>${codeInfo.causes_dz}</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>الحل المقترح:</h4>
+                        <p>${codeInfo.solution_dz}</p>
+                    </div>
+                `;
+            } else {
+                // إذا ما صبناش البيانات، نظهرو رسالة
+                noDataMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

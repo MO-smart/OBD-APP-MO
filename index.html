@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرح أكواد أعطال الطونوبيل (تجريبي بالدارجة)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS لهذا الملف فقط، أو يمكن نقله إلى style.css */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* توسيط عمودي */
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px; /* صغرنا شوية العرض */
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px); /* 100% - padding + border */
+            padding: 12px;
+            margin-bottom: 15px; /* مسافة بين مربع الإدخال والزر */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            direction: ltr;
+            text-align: left;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px; /* زدنا شوية العرض */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* زدنا ترانزيشن للتحويل */
+            width: 100%; /* باش الزر ياخذ عرض كامل */
+            box-sizing: border-box; /* باش العرض يتضمن البادينغ */
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px); /* يطلع شوية كي تمر عليه بالماوس */
+        }
+        button:active {
+            transform: translateY(0); /* يرجع بلاصتو كي تكليكي */
+        }
+
+        /* أنيميشن التحميل (Loading Animation) */
+        .loading-animation {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 30px auto; /* توسيط */
+            display: none; /* مخفية في البداية */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>موقع شرح أكواد أعطال الطونوبيل (تجريبي بالدارجة)</h1>
+        <p id="welcomeMessage">يا مرحبا بيك! دخل الكود تاع العطل واكليكي على 'حوس'.</p>
+
+        <input type="text" id="errorCodeInput" placeholder="دخل الكود هنا (مثلاً: P0420)">
+        <button id="searchButton">حوس على الكود</button>
+
+        <div class="loading-animation" id="loadingAnimation"></div>
+        
+        </div>
+
+    <footer>
+        &copy; 2025 من برمجة كريس محمد
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
